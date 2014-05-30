@@ -11,7 +11,10 @@ var balanced = {
 };
 
 balanced.configure = function(apiKey) {
-  balanced.auth = { user: apiKey, pass: apiKey };
+  balanced.auth = {
+    user: apiKey,
+    pass: apiKey
+  };
 };
 
 // function Card() { // type is either 'cards or bankAccounts'
@@ -31,7 +34,7 @@ balanced.configure = function(apiKey) {
 balanced.card = {
   debit: {
     create: create,
-    type: 'cards'
+    type: 'cards' // type is either 'cards or bankAccounts'
   }
 };
 
@@ -59,7 +62,7 @@ function create(transaction) { // transactionObject for debits
   };
 
   request.post(options, function(error, response, body) {
-    if (!error && response.statusCode === 200) {
+    if(!error && response.statusCode === 200) {
       console.log(body);
       deferred.resolve(body);
 

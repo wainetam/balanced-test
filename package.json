@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/wainetam/balanced-test/issues"
   },
-  "homepage": "https://github.com/wainetam/balanced-test"
+  "homepage": "https://github.com/wainetam/balanced-test",
+  "dependencies": {
+    "q": "^1.0.1",
+    "request": "^2.36.0"
+  }
 }
