@@ -1,8 +1,8 @@
 {
-  "name": "balanced",
+  "name": "balanced-test",
   "version": "0.0.1",
-  "description": "balanced-api",
-  "main": "balanced.js",
+  "description": "balanced-test-api",
+  "main": "balanced-test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +11,7 @@
     "url": "https://github.com/wainetam/balanced-test.git"
   },
   "author": "wainetam",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/wainetam/balanced-test/issues"
   },
