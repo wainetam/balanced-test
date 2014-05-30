@@ -1,10 +1,12 @@
-# Balanced-Node Library (in the flavor of Stripe)
+# Balanced-Node Library (flavor of Stripe)
 
 ## Install
   Add file in root directory of project folder and reference the filename. If not in root directory, adjust accordingly.
+  ```
   var balanced = require('./balanced-test');
-
+  ```
 ## Usage
+  ```
   balanced.configure(yourApiKey);
   
   // to charge credit card
@@ -17,12 +19,12 @@
 
   // to charge bank account
   balanced.bankAccount.debit.create({
-    acctId: 'xxxxxxxxxxxxxxx', from balanced.js
+    acctId: 'xxxxxxxxxxxxxxx', // from balanced.js
     amount: 5000, // in cents
     appears_on_statement_as: "Statement text",
     description: "Some descriptive text for the debit",
   });
-
+  ```
 ## Credits
 
   - [Waine Tam](http://github.com/wainetam)
