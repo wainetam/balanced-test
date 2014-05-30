@@ -4,54 +4,57 @@ var request = require('request'),
 var apiEndpoint = 'https://api.balancedpayments.com/';
 
 var balanced = {
-  // card: {},
-  // bank: {}
-  card: new Card(),
-  bankAccount: new BankAccount()
+  card: {},
+  bank: {}
+  // card: new Card(),
+  // bankAccount: new BankAccount()
 };
 
 balanced.configure = function(apiKey) {
   balanced.auth = { user: apiKey, pass: apiKey };
 };
 
-function Card() { // typeName is either 'cards or bankAccounts'
-  this.debit = {
-    type: 'cards',
-    create: create
-  };
-}
-
-function BankAccount() {
-  this.debit = {
-    type: 'bank_accounts',
-    create: create
-  };
-}
-
-// balanced.card = {
-//   debit: {
+// function Card() { // type is either 'cards or bankAccounts'
+//   this.debit = {
+//     type: 'cards',
 //     create: create
-//   }
-// };
+//   };
+// }
 
-// balanced.bank = {
-//   debit: {
+// function BankAccount() {
+//   this.debit = {
+//     type: 'bank_accounts',
 //     create: create
-//   }
-// };
+//   };
+// }
 
-function create(transaction) { // transactionObject
+balanced.card = {
+  debit: {
+    create: create,
+    type: 'cards'
+  }
+};
+
+balanced.bankAccount = {
+  debit: {
+    create: create,
+    type: 'bank_accounts'
+  }
+};
+
+function create(transaction) { // transactionObject for debits
   var deferred = Q.defer();
+
   var options = {
     uri: apiEndpoint + this.type + '/' + transaction.acctId + '/debits', // this.type is cards or bank_accounts
     auth: balanced.auth,
     form: {
-      amount: transaction.amount || 0, // The amount of the debit in cents
+      amount: transaction.amount || 0,  // amount in cents
       appears_on_statement_as: transaction.appears_on_statement_as || '',
       description: transaction.description || '',
-      meta: transaction.meta || {}, // Single level mapping from string keys to string values
-      order: transaction.order || '', // The order this debit is associated with
-      source: transaction.source || '' // The funding instrument debited
+      meta: transaction.meta || {},     // single level mapping from string keys to string values
+      order: transaction.order || '',   // order this debit is associated with
+      source: transaction.source || ''  // funding instrument debited
     }
   };
 
